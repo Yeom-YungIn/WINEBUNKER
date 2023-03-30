@@ -6,36 +6,20 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-// const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-
-const config = {
-  // connectionString: 'postgres://ubuntu:password@host:port/db?sslmode=require',
-   "username": "ubuntu",
-   "password": "./config/DL.pem",
-   "database": "vindb",
-   "host": "13.211.158.17",
-   "dialect": "postgresql",
-   "dialectOptions": {
-      "ssl": {
-        "rejectUnauthorized": false,
-        "cert": fs.readFileSync('./config/DB.pem').toString()
-      }        
-  }
-}
-
-console.log(config)
 let sequelize;
 if (config.use_env_variable) {
-  // sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  console.log('~~~~~~~~~~~~~~')
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
+  sequelize = new Sequelize(config.database, config.username, config.password,{
+    host: config.host,
+    port: config.port,
+    schema: config.schema,
+    dialect: config.dialect,
+    logging: console.log
+  }
 )}
 
 fs

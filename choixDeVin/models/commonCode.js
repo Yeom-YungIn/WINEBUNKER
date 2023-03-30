@@ -1,28 +1,32 @@
 module.exports = function (sequelize, DataTypes) {
-  const resource = sequelize.define(
-    "resource",
+  const commonCode = sequelize.define(
+    "commonCode",
     {
-      id: {
-        filed: "id",
-        type: DataTypes.UUID(),
+      code: {
+        filed: "code",
+        type: DataTypes.STRING(),
         unique: true,
         allowNull: false,
         primaryKey: true,
       },
       publisherId: {
-        field: "publisher_id",
+        field: "code_name",
         type: DataTypes.STRING(),
         allowNull: false,
       },
-      vin: {
-        field: "vin",
-        type: DataTypes.BIGINT(),
+      codeNameKr: {
+        field: "code_name_kr",
+        type: DataTypes.STRING(),
+        allowNull: false,
+      },
+      sortOrder: {
+        field: "sort_order",
+        type: DataTypes.STRING(),
         allowNull: false,
       },
       description: {
-        field: "description",
-        type: DataTypes.STRING(),
-        allowNull: false,
+         field: "description",
+         type: DataTypes.STRING(),
       },
       issued: {
         field: "issued",
@@ -32,14 +36,13 @@ module.exports = function (sequelize, DataTypes) {
       modified: {
         field: "modified",
         type: DataTypes.DATE(),
-        allowNull: false,
       },
     },
     {
       underscored: true,
       freezeTableName: true,
-      tableName: "resource",
+      tableName: "common_code",
     }
   );
-  return resource;
+  return commonCode;
 };

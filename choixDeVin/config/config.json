@@ -1,16 +1,12 @@
 {
   "development": {
-    "username": "vin",
+    "username": "metis",
     "password": "password",
-    "database": "vindb",
-    "host": "13.211.158.17",
+    "database": "dev",
+    "host": "192.168.2.241",
+    "port": "5444",
     "dialect": "postgresql",
-    "dialectOptions": {
-        "ssl": {
-          "rejectUnauthorized": false,
-          "cert": "./config/DB.pem"
-        }        
-    }
+    "schema": "public"
   },
   "test": {
     "username": "root",

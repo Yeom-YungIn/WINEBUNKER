@@ -1,26 +1,21 @@
 module.exports = function (sequelize, DataTypes) {
-  const resource = sequelize.define(
-    "resource",
+  const resourcePrice = sequelize.define(
+    "resource_price",
     {
-      id: {
-        filed: "id",
+      resourceId: {
+        filed: "resource_id",
         type: DataTypes.UUID(),
         unique: true,
         allowNull: false,
         primaryKey: true,
       },
-      publisherId: {
-        field: "publisher_id",
-        type: DataTypes.STRING(),
-        allowNull: false,
-      },
-      vin: {
-        field: "vin",
+      price: {
+        field: "price",
         type: DataTypes.BIGINT(),
         allowNull: false,
       },
-      description: {
-        field: "description",
+      store: {
+        field: "store",
         type: DataTypes.STRING(),
         allowNull: false,
       },
@@ -38,8 +33,8 @@ module.exports = function (sequelize, DataTypes) {
     {
       underscored: true,
       freezeTableName: true,
-      tableName: "resource",
+      tableName: "resource_price",
     }
   );
-  return resource;
+  return resourcePrice;
 };
