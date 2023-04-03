@@ -7,8 +7,7 @@ const indexController = require("../controller/indexCotroller.js");
 // });
 
 router
-    .get('/', indexController.findAll)
-    .get('/:id', indexController.render)
+    .get('/', indexController.main)
 
 
 module.exports = router;

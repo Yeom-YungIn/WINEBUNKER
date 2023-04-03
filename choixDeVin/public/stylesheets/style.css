@@ -1,8 +1,14 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+
+.main div {
+  text-align: center;
+  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #7FFFD4;
+}
 a {
   color: #00B7FF;
 }
