@@ -3,11 +3,15 @@ body {
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.title {
+  text-align: center;
+  font: 50px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
-.main div {
+.main p {
   text-align: center;
   font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #7FFFD4;
+  color: #DC23EF;
 }
 a {
   color: #00B7FF;
