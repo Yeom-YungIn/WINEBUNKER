@@ -1,7 +1,7 @@
 const sequelize = require("../models/")
-const resource = sequelize.resource
+const index = '../views/src/pug/index.pug'
 exports.main = (req, res) => {
-    res.render('index', {title: 'Choix De Vin'})
+    res.render(index)
 };
 
 exports.render = (req, res) => {

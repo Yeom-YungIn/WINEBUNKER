@@ -23,7 +23,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 //db sync
-db.sequelize.sync()
+// db.sequelize.sync()
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
