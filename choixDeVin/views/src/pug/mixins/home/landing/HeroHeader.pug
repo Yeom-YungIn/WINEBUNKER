@@ -1,43 +1,5 @@
 append variables
 
-  -
-    var headerProducts= [
-      {
-        image:'product-1.png',
-      },
-      {
-        image:'product-2.png',
-      },
-
-      {
-        image:'product-3.png',
-      },
-      {
-        image:'product-4.png',
-      },
-
-      {
-        image:'product-5.png',
-      },
-       {
-        image:'product-1.png',
-      },
-      {
-        image:'product-2.png',
-      },
-
-      {
-        image:'product-3.png',
-      },
-      {
-        image:'product-4.png',
-      },
-
-      {
-        image:'product-5.png',
-      },
-    ]
-
 mixin HeaderProductCard(config)
   img(src=`${CWD}assets/img/gallery/${config.image}`  alt='products').w-100
 
@@ -46,21 +8,18 @@ mixin HeroHeader({id})
     .container
       .row.align-items-center.min-vh-75.min-vh-md-50
         .col-12.text-center.py-8
-          h1.lh-sm.fs-lg-6.fs-xxl-7 Choix De Vin
+          h1.lh-sm.fs-lg-6.fs-xxl-7 WINE BUNKER
+
             br
             |
-          p.text-700 Choose your favorite wine && Record the price of the wine you bought
+          p.text-700
+          |Compare the price of the wine you want to buy and buy it cheaply.
           .mt-5
           div(class= 'search')
             input(type="text" class="searchTerm" placeholder= "검색어를 입력해주세요")
             button(type="submit" class= "searchButton")
               i 검색
-    .container-fluid  
+    .container
       .row.gx-2 
-        .col-12    
-          .swiper-container.pb-4.overflow-hidden(data-pagination-target=id) 
-            .swiper-wrapper
-              each item in headerProducts
-                .swiper-slide.h-auto
-                  +HeaderProductCard(item) 
-            //- .swiper-pagination(id=id)
+        .col-12
+          h1.lh-sm.fs-lg-6.fs-xxl-7 최근 게시된 가격 목록
