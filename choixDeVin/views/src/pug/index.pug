@@ -14,7 +14,7 @@ include mixins/home/landing/Footer
 
 
 append variables
- 
+
   - var currentPage = 3;
   -
     var attrsBody = {
@@ -29,13 +29,13 @@ prepend scripts
     script(src=`${CWD}vendors/swiper/swiper-bundle.min.js`) 
   
 append content
-  +HeroHeader({id: 'pagination1'})
+  +HeroHeader({id: 'pagination1', resource: resource})
   //+Brands
-  //+HowItHappens
-  //+Testimonials
+  +HowItHappens
+  +Testimonials
   //+Pricing
-  //+PhotosShot
-  //+Services
+  +PhotosShot
+  +Services
   //+Faqs
   //+Cta
   +Footer

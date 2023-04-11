@@ -4,22 +4,36 @@ mixin HeaderProductCard(config)
   img(src=`${CWD}assets/img/gallery/${config.image}`  alt='products').w-100
 
 mixin HeroHeader({id})
-  section.py-0#header
+  section.py-0
     .container
       .row.align-items-center.min-vh-75.min-vh-md-50
         .col-12.text-center.py-8
           h1.lh-sm.fs-lg-6.fs-xxl-7 WINE BUNKER
-
-            br
-            |
           p.text-700
           |Compare the price of the wine you want to buy and buy it cheaply.
           .mt-5
-          div(class= 'search')
-            input(type="text" class="searchTerm" placeholder= "검색어를 입력해주세요")
-            button(type="submit" class= "searchButton")
-              i 검색
+          .search
+            div(class= "row height d-flex justify-content-center align-items-center")
+              div(class = "col-md-6")
+                form(action="/search" method="GET")
+                  div(class= "form")
+                    i(class= "fa fa-search")
+                    input(name= "search" type="text" class="form-control form-input" placeholder= "검색어를 입력해주세요")
+                    span(class= "left-span")
     .container
-      .row.gx-2 
-        .col-12
-          h1.lh-sm.fs-lg-6.fs-xxl-7 최근 게시된 가격 목록
+        table(class = "table")
+          thead
+            tr
+              th Wine
+              th 작성자
+              th 등록일
+          tbody
+            each item in resource
+              -const date = item.issued
+              -const year = date.getFullYear()
+              -const month = date.getMonth() + 1
+              -const day = date.getDate()
+              tr
+                td= item.vin
+                td= item.publisherId
+                td= year + '-' + month + '-' + day
