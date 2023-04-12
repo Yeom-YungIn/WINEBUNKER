@@ -3,7 +3,7 @@ append variables
 mixin HeaderProductCard(config)
   img(src=`${CWD}assets/img/gallery/${config.image}`  alt='products').w-100
 
-mixin HeroHeader({id})
+mixin HeroHeader
   section.py-0
     .container
       .row.align-items-center.min-vh-75.min-vh-md-50
@@ -20,20 +20,3 @@ mixin HeroHeader({id})
                     i(class= "fa fa-search")
                     input(name= "search" type="text" class="form-control form-input" placeholder= "검색어를 입력해주세요")
                     span(class= "left-span")
-    .container
-        table(class = "table")
-          thead
-            tr
-              th Wine
-              th 작성자
-              th 등록일
-          tbody
-            each item in resource
-              -const date = item.issued
-              -const year = date.getFullYear()
-              -const month = date.getMonth() + 1
-              -const day = date.getDate()
-              tr
-                td= item.vin
-                td= item.publisherId
-                td= year + '-' + month + '-' + day

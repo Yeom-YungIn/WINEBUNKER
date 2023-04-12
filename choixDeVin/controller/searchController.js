@@ -1,8 +1,8 @@
 const db = require('../models');
 
-const index = '../views/src/pug/index.pug';
+const search = '../views/src/pug/page/search.pug';
 
 exports.search = async (req, res) => {
   console.log(req.query.search)
-  res.send('AAAAAAAAAAAAAAAA' + req.query.search)
+  res.render(search)
 };

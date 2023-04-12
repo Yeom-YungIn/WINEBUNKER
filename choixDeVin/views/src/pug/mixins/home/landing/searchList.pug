@@ -1,0 +1,21 @@
+append variables
+
+
+mixin searchList
+    .container
+        table(class = "table")
+          thead
+            tr
+              th Wine
+              th 작성자
+              th 등록일
+          tbody
+            each item in resource
+              -var date = item.issued
+              -var year = date.getFullYear()
+              -var month = date.getMonth() + 1
+              -var day = date.getDate()
+              tr
+                td= item.vin
+                td= item.publisherId
+                td= year + '-' + month + '-' + day
