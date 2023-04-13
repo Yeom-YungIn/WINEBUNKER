@@ -1,21 +1,29 @@
 append variables
 
-
 mixin searchList
     .container
-        table(class = "table")
-          thead
-            tr
-              th Wine
-              th 작성자
-              th 등록일
-          tbody
-            each item in resource
-              -var date = item.issued
-              -var year = date.getFullYear()
-              -var month = date.getMonth() + 1
-              -var day = date.getDate()
+          table(class = "table")
+            thead
               tr
-                td= item.vin
-                td= item.publisherId
-                td= year + '-' + month + '-' + day
+                th Wine
+                th 작성자
+                th 등록일
+            tbody
+              if resource !== undefined
+                each item in resource
+                  - console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                  - console.log(item)
+                    -var date = item.issued
+                    -var year = date.getFullYear()
+                    -var month = date.getMonth() + 1
+                    -var day = date.getDate()
+                    tr
+                      td= item.vinInfo.vinName
+                      td= item.publisherId
+                      td= year + '-' + month + '-' + day
+              else
+              - console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                tr
+                  td no result
+                  td no result
+                  td no result

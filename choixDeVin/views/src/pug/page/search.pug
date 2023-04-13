@@ -1,9 +1,9 @@
 extends ../layouts/LayoutTheme
+include ../mixins/home/landing/HeroHeader
 include ../mixins/home/landing/searchList
+include ../mixins/home/landing/Footer
 
 append variables
-
-    - var resource = resource
 
 append styles
     link(href=`${CWD}vendors/swiper/swiper-bundle.min.css`,rel='stylesheet')
@@ -12,4 +12,6 @@ prepend scripts
     script(src=`${CWD}vendors/swiper/swiper-bundle.min.js`)
 
 append content
+    +HeroHeader
     +searchList(resource)
+    +Footer

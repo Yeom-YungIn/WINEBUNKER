@@ -5,9 +5,15 @@ const index = '../views/src/pug/index.pug';
 exports.main = async (req, res) => {
   const resource = await db.resource.findAll({
     attributes: ['id', 'vin', 'publisherId', 'issued'],
-    limit: 10
+    limit: 10,
+    include: [
+      {
+        model: db.vin,
+        as: 'vinInfo',
+        attributes: ['vinSn', 'vinName']
+      }
+    ]
   });
-  console.log(resource)
   res.render(index, { resource });
 };
 

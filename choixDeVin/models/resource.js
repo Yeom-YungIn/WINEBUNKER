@@ -36,10 +36,19 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      underscored: true,
-      freezeTableName: true,
+      // underscored: true,
+      // freezeTableName: true,
       tableName: "resource",
     }
   );
-  return resource;
+
+  resource.associate = function (models) {
+      models.resource.belongsTo(models.vin, {
+          foreignKey: 'vin',
+          targetKey: 'vinSn',
+          as: 'vinInfo'
+      })
+  }
+
+  return resource
 };
