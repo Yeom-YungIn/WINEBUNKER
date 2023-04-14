@@ -6,4 +6,5 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-/choixDeVin/node_modules/
+./.gitignore
+../Choix-du-vin/choixDeVin/node_modules/*
