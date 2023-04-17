@@ -39,10 +39,20 @@ exports.extract = async (req, res) => {
     await worker.load();
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
-    const { data: { text } } = await worker.recognize(`./winebunker/src/public/textbook.png`);
+    const text = await worker.recognize(`./winebunker/src/public/textbook.png`);
     await worker.terminate();
-    console.log('ㅡㅡㅡㅡㅡㅡㅡ')
-    console.log(text)
+
+    var list = text.data.text.split('\n')
+    const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&“\\\=\(\'\"]/gi
+    for (var i = 0;  i < list.length; i ++){
+      console.log( '"' + list[i].replace(reg,'') + '"')
+      if (list[i].replace(reg,'') !== '') {
+        list[i] = list[i].replace(reg,'').trim()
+      } else {
+        list.pop(i)
+      }
+    }
+    console.log(list)
   } catch (err) {
     console.log(err)
   }
