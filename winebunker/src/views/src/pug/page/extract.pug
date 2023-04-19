@@ -1,0 +1,18 @@
+extends ../layouts/LayoutTheme
+include ../mixins/home/landing/HeroHeader
+include ../mixins/home/landing/extract
+include ../mixins/home/landing/Footer
+
+append variables
+ -console.log(list)
+
+append styles
+    link(href=`${CWD}vendors/swiper/swiper-bundle.min.css`,rel='stylesheet')
+
+prepend scripts
+    script(src=`${CWD}vendors/swiper/swiper-bundle.min.js`)
+
+append content
+    +HeroHeader
+    +extract(list)
+    +Footer

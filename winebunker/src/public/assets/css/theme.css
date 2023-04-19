@@ -18506,4 +18506,22 @@ Calaendar icon input[type="date"]::-webkit-calendar-picker-indicator {
   border:none;
 }
 
+/*.icon {*/
+/*  width: 60px;*/
+/*  height: 30px;*/
+/*  border-radius: 50% / 50%;*/
+/*  background-color: #007bff;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  color: white;*/
+/*  font-size: 1.5rem;*/
+/*  font-weight: bold;*/
+/*  text-decoration: none;*/
+/*}*/
+/*.icon:hover {*/
+/*  background-color: #0056b3;*/
+/*  cursor: pointer;*/
+/*}*/
+
 /*# sourceMappingURL=theme.css.map */

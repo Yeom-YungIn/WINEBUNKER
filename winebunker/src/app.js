@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./models');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/search');
+const searchRouter = require('./routes/search');
+const extractRouter = require('./routes/extract');
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/search', usersRouter);
+app.use('/search', searchRouter);
+app.use('/extract', extractRouter);
 
 // db sync
 db.sequelize.sync();
