@@ -10,13 +10,18 @@ mixin HeroHeader
         .col-12.text-center.py-8
           h1.lh-sm.fs-lg-6.fs-xxl-7 WINE BUNKER
           p.text-700
-          |Compare the price of the wine you want to buy and buy it cheaply.
+            | Compare the price of the wine you want to buy and buy it cheaply.
           .mt-5
-          .search
-            div(class= "row height d-flex justify-content-center align-items-center")
-              div(class = "col-md-6")
-                form(action="/search" method="GET")
-                  div(class= "form")
-                    i(class= "fa fa-search")
-                    input(name= "search" type="text" class="form-control form-input" placeholder= "검색어를 입력해주세요")
-                    span(class= "left-span")
+          form(action="/search" method="GET")
+            .input-group
+              input(type="text" name="search" class="form-control" placeholder="검색어를 입력해주세요")
+              div.input-group-append
+                button(type="submit" class="btn btn-outline-secondary")
+                  i.fa.fa-search
+          form(action="/extract" method="POST" enctype="multipart/form-data")
+            div.input-group-append
+              button(type="submit" class="btn btn-outline-secondary")
+                i.fa.fa-search
+            //label(for="imageInput" class="btn btn-outline-secondary mb-0")
+            //  i.fa.fa-image
+            //  input#imageInput(type="file" name="image" style="display:none" accept="image/*")

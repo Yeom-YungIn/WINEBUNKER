@@ -33,6 +33,6 @@ exports.extract = async (req, res) => {
   } catch (err) {
     console.log(err)
   }
-  console.log(list)
+
   res.render(extract, {list: list})
 }
