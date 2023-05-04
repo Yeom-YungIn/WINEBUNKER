@@ -20,8 +20,7 @@ mixin HeroHeader
                   i.fa.fa-search
           form(action="/extract" method="POST" enctype="multipart/form-data")
             div.input-group-append
-              button(type="submit" class="btn btn-outline-secondary")
-                i.fa.fa-search
-            //label(for="imageInput" class="btn btn-outline-secondary mb-0")
-            //  i.fa.fa-image
-            //  input#imageInput(type="file" name="image" style="display:none" accept="image/*")
+              label(for="imageInput" class="btn btn-outline-secondary mb-0" )
+                i.fa.fa-image
+                input#imageInput(type="file" name="image" style="display:none" accept="image/*")
+                button(type="submit" class="btn btn-outline-secondary mb-0" style="display:block") 업로드

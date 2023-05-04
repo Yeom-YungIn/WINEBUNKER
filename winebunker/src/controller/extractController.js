@@ -14,13 +14,15 @@ exports.extract = async (req, res) => {
   // if (!req.file) {
   //   res.sendStatus(400, 'Cannot find file on request')
   // }
+  // console.log(req)
+  console.log(req.file)
   try {
     // await saveFile(req.file)
     const worker = await createWorker()
     await worker.load();
     await worker.loadLanguage('eng');
     await worker.initialize('eng');
-    const text = await worker.recognize(`./winebunker/src/public/textbook.png`);
+    const text = await worker.recognize(req.file.buffer);
     await worker.terminate();
 
     var list = text.data.text.split('\n')
@@ -35,4 +37,8 @@ exports.extract = async (req, res) => {
   }
 
   res.render(extract, {list: list})
+}
+
+exports.test = (req, res) => {
+  res.send("extract")
 }
