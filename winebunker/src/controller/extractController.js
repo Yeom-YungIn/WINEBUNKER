@@ -20,8 +20,8 @@ exports.extract = async (req, res) => {
     // await saveFile(req.file)
     const worker = await createWorker()
     await worker.load();
-    await worker.loadLanguage('eng');
-    await worker.initialize('eng');
+    await worker.loadLanguage('eng+fra+frm+kor+ita+ita_old+spa+spa_old+por+deu');
+    await worker.initialize('eng+fra+frm+kor+ita+ita_old+spa+spa_old+por+deu');
     const text = await worker.recognize(req.file.buffer);
     await worker.terminate();
 

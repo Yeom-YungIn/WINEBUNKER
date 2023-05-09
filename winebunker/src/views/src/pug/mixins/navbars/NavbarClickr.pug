@@ -7,16 +7,9 @@ mixin NavbarClickr
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse.border-top.border-lg-0.mt-4.mt-lg-0
         ul.navbar-nav.ms-auto.mb-2.mb-lg-0
-          li.nav-item.px-2
-            a.nav-link.fw-bold(aria-current='page', href='/' class= currentPage === 'index' ? 'active' : false ) Home
-          li.nav-item.px-2
-            a.nav-link.fw-bold(href='#howitworks') How it works
-          li.nav-item.px-2
-            a.nav-link.fw-bold(href='#services') Services
-          li.nav-item.px-2
-            a.nav-link.fw-bold(href='#packages') Packages
-          li.nav-item.px-2
-            a.nav-link.fw-bold(href='#faqs') FAQs 
-
-        form.ms-lg-5
-          a.btn.btn-primary(href='#!') Get started
+          form(action="/extract" method="POST" enctype="multipart/form-data")
+            div.input-group-append.input-group-sm
+              label(for="imageInput" class="btn btn-outline-secondary mb-0" )
+                i.fa.fa-image
+                input#imageInput(type="file" name="image" style="display:none" accept="image/*")
+                button(type="submit" class="btn btn-outline-secondary btn-sm mb-0" style="display:block") 이미지 검색

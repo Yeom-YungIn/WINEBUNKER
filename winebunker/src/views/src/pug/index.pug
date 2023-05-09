@@ -2,10 +2,8 @@ extends layouts/LayoutTheme
 include mixins/common/ServicesCard
 include mixins/home/landing/HeroHeader
 include mixins/home/landing/SearchList
-include mixins/home/landing/HowItHappens
-include mixins/home/landing/Testimonial
-include mixins/home/landing/PhotosShot
-include mixins/home/landing/Services
+//include mixins/home/landing/HowItHappens
+//include mixins/home/landing/Testimonial
 include mixins/home/landing/Footer
 
 
@@ -28,8 +26,6 @@ prepend scripts
 append content
   +HeroHeader
   +SearchList({resource})
-  +HowItHappens
-  +Testimonials
-  +PhotosShot
-  +Services
+  //+HowItHappens
+  //+Testimonials
   +Footer
