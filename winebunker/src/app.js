@@ -43,6 +43,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.set('test','testdata')
-
 module.exports = app;

@@ -1,23 +1,26 @@
 const db = require('../models');
-
-const multer = require('multer')
-const fs = require('fs')
-const upload = multer()
 const {createWorker} = require('tesseract.js')
 
+const index = '../views/src/pug/index.pug';
 const extract = '../views/src/pug/page/extract.pug';
 
-const saveFile = async (file) => { new Promise((resolve, reject) =>
-    fs.writeFile('./public/uploads/receipt.png', file.buffer, (err) => err ? reject('An error occurred: ' + err.message) : resolve({uploaded: true}))) }
-
 exports.extract = async (req, res) => {
-  // if (!req.file) {
-  //   res.sendStatus(400, 'Cannot find file on request')
-  // }
-  // console.log(req)
-  console.log(req.file)
+  if (!req.file) {
+    const resource = await db.resource.findAll({
+      attributes: ['id', 'vin', 'publisherId', 'issued'],
+      limit: 10,
+      include: [
+        {
+          model: db.vin,
+          as: 'vinInfo',
+          attributes: ['vinSn', 'vinName']
+        }
+      ]
+    });
+    res.render(index, { resource })
+    return resource;
+  }
   try {
-    // await saveFile(req.file)
     const worker = await createWorker()
     await worker.load();
     await worker.loadLanguage('eng+fra+frm+kor+ita+ita_old+spa+spa_old+por+deu');
@@ -37,6 +40,8 @@ exports.extract = async (req, res) => {
   }
 
   res.render(extract, {list: list})
+  return;
+  console.log('~~~~~~~~~~~~')
 }
 
 exports.test = (req, res) => {

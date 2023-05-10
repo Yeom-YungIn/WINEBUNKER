@@ -1,4 +1,5 @@
 mixin NavbarClickr
+  script(src='https://code.jquery.com/jquery-3.6.0.min.js')
   nav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3.d-block(data-navbar-on-scroll)
     .container
       a.navbar-brand.d-inline-flex(href= '/')
@@ -12,4 +13,10 @@ mixin NavbarClickr
               label(for="imageInput" class="btn btn-outline-secondary mb-0" )
                 i.fa.fa-image
                 input#imageInput(type="file" name="image" style="display:none" accept="image/*")
-                button(type="submit" class="btn btn-outline-secondary btn-sm mb-0" style="display:block") 이미지 검색
+                button#imageUpload(type="submit" class="btn btn-outline-secondary btn-sm mb-0" style="display:block") 이미지 검색
+              script.
+                $('#imageUpload').on('click', function () {
+                  $('.loading-spinner').show(); // show loading spinner
+                })
+            .loading-spinner(style="display: none")
+              h1 Extracting...
