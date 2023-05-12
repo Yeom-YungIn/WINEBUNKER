@@ -5,7 +5,7 @@ class ResourceService {
         this.db = db
     }
 
-    async findList(req, res) {
+    async findList() {
         const resource = await this.db.resource.findAll({
             attributes: ['id', 'vin', 'publisherId', 'issued'],
             limit: 10,

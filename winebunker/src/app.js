@@ -7,6 +7,7 @@ const db = require('./models');
 const indexRouter = require('./routes/index');
 const searchRouter = require('./routes/search');
 const extractRouter = require('./routes/extract');
+const registeRouter = require('./routes/registe');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/search', searchRouter);
 app.use('/extract', extractRouter);
+app.use('/registe', registeRouter);
 
 // db sync
 db.sequelize.sync();

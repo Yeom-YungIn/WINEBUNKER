@@ -8,15 +8,24 @@ mixin NavbarClickr
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse.border-top.border-lg-0.mt-4.mt-lg-0
         ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+          form(action="/registe" method="GET")
+            div.input-group-append.input-group-sm.col-20.px-2.py-2
+              button#registe(type="submit" class="btn btn-outline-secondary mb-0" style="height: 100px; display:block") 등록
+            script.
+              $('#registe').on('click', function () {
+                $('.loading-spinner').show(); // show loading spinner
+              })
+            .loading-spinner(style="display: none")
+              h1 Extracting...
           form(action="/extract" method="POST" enctype="multipart/form-data")
-            div.input-group-append.input-group-sm
+            div.input-group-append.input-group-sm.col-20.px-2.py-2
               label(for="imageInput" class="btn btn-outline-secondary mb-0" )
                 i.fa.fa-image
                 input#imageInput(type="file" name="image" style="display:none" accept="image/*")
                 button#imageUpload(type="submit" class="btn btn-outline-secondary btn-sm mb-0" style="display:block") 이미지 검색
-              script.
-                $('#imageUpload').on('click', function () {
-                  $('.loading-spinner').show(); // show loading spinner
-                })
-            .loading-spinner(style="display: none")
-              h1 Extracting...
+                  script.
+                    $('#imageUpload').on('click', function () {
+                      $('.loading-spinner').show(); // show loading spinner
+                    })
+                .loading-spinner(style="display: none")
+                  h1 Extracting...

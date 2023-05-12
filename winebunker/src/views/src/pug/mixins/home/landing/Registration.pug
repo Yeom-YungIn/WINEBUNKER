@@ -1,0 +1,37 @@
+append variables
+
+mixin Registration
+        .container
+            .row.align-items-center.min-vh-75.min-vh-md-50
+                .col-12.text.py-8
+                    h1 Add Product
+                    form(method="POST" action="/registe")
+                        .form-group
+                            label(for="purchase-date") 구매 일자
+                            input#purchase-date.form-control(type="date" name="purchaseDate" required)
+                        .form-group
+                            label(for="name-en") 와인명 (영문명)
+                            input#name-en.form-control(type="text" name="nameEn" required)
+                        .form-group
+                            label(for="name-ko") 와인명 (한글명)
+                            input#name-ko.form-control(type="text" name="nameKo" required)
+                        .form-group
+                            label(for="vendor") 구입처
+                            input#vendor.form-control(type="text" name="vendor")
+                        .form-group
+                            label(for="vintage") 빈티지
+                            input#vintage.form-control(type="number" name="vintage" min="0" max="9999" step="1" value="2022")
+                        .form-group
+                            label(for="capacity") 용량
+                            input#capacity.form-control(type="number" name="capacity" min="0" max="1500" step="350" required)
+                        .form-group
+                            label(for="price") 가격
+                            input#price.form-control(type="number" name="price" min="0" max="100000000" step="1000" required)
+                        .form-group
+                            label(for="etc") 기타 행사 정보
+                            input#etc.form-control(type="text" name="etc")
+                        button.btn.btn-primary(type="submit") Submit
+
+
+
+
