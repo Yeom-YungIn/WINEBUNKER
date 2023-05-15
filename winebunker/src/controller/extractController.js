@@ -3,7 +3,6 @@ const {createWorker} = require('tesseract.js')
 const ResourceService = require("../service/ResourceService");
 const ExtractService = require("../service/ExtractService");
 
-const index = '../views/src/pug/index.pug';
 const extract = '../views/src/pug/page/extract.pug';
 
 const resourceService = new ResourceService(db);

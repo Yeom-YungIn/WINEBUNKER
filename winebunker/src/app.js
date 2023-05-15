@@ -4,10 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./models');
-const indexRouter = require('./routes/index');
-const searchRouter = require('./routes/search');
-const extractRouter = require('./routes/extract');
-const registeRouter = require('./routes/registe');
+const router = require('./routes')
 
 const app = express();
 
@@ -16,15 +13,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+// app.use(logger('combined'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/search', searchRouter);
-app.use('/extract', extractRouter);
-app.use('/registe', registeRouter);
+//route
+router.route(app)
 
 // db sync
 db.sequelize.sync();

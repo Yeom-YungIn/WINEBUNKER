@@ -1,7 +1,7 @@
 const db = require('../models');
 const ResourceService = require("../service/ResourceService");
 
-const index = '../views/src/pug/index.pug';
+const main = '../views/src/pug/main.pug';
 const registe = '../views/src/pug/page/registration.pug';
 
 const resourceService = new ResourceService(db);
