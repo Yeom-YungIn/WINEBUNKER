@@ -1,8 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const indexController = require('../controller/indexCotroller.js');
+const mainRouter = require("./main");
+const searchRouter = require("./search");
+const extractRouter = require("./extract");
+const registeRouter = require("./registe");
 
-router
-    .get('/', indexController.resourceList)
-
-module.exports = router;
+module.exports.route = (app) => {
+    app.use('/', mainRouter);
+    app.use('/search', searchRouter);
+    app.use('/extract', extractRouter);
+    app.use('/registe', registeRouter);
+}
