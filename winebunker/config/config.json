@@ -9,11 +9,13 @@
     "schema": "public"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "metis",
+    "password": "password",
+    "database": "dev",
+    "host": "192.168.2.241",
+    "port": "5444",
+    "dialect": "postgresql",
+    "schema": "public"
   },
   "production": {
     "username": "root",

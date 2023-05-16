@@ -7,11 +7,6 @@ const resourceService = new ResourceService(db);
 
 
 exports.resourceList = async (req, res) => {
-  const resource = await resourceService.findList(req)
-
+  const resource = await resourceService.findAll(0, 10)
   res.render(main, { resource });
-};
-
-exports.render = (req, res) => {
-  console.log('render');
 };

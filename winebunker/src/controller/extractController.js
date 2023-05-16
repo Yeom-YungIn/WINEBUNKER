@@ -5,12 +5,10 @@ const ExtractService = require("../service/ExtractService");
 
 const extract = '../views/src/pug/page/extract.pug';
 
-const resourceService = new ResourceService(db);
 const extractService = new ExtractService(createWorker);
 
 exports.extract = async (req, res) => {
   if (!req.file) {
-    const resource = await resourceService.findList()
     res.render(extract, {list: ["이미지 파일을 업로드 해주세요"]})
     return;
   }
@@ -24,5 +22,4 @@ exports.extract = async (req, res) => {
 }
 
 exports.test = (req, res) => {
-  res.send("extract")
 }

@@ -31,9 +31,10 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      underscored: true,
-      freezeTableName: true,
-      tableName: "resource_price",
+        underscored: true,
+        freezeTableName: true,
+        timestamps: false,
+        tableName: "resource_price",
     }
   );
   return resourcePrice;

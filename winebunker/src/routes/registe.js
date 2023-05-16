@@ -5,9 +5,6 @@ const multer = require("multer")
 const router = express.Router();
 
 router
-     .get('/', registeController.registe)
-
-// router
-    // .post('/',registeController.save)
+    .post('/',registeController.registe)
 
 module.exports = router;

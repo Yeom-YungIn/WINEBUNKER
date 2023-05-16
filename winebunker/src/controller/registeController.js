@@ -7,6 +7,14 @@ const registe = '../views/src/pug/page/registration.pug';
 const resourceService = new ResourceService(db);
 
 exports.registe = async (req, res) => {
-  console.log('11111111')
+  console.log(req.data)
+  const transaction = db.transaction()
+  try {
+    const saveResource = await resourceService.saveResource(req, res, transaction)
+    transaction.commit()
+  } catch (e) {
+    transaction.rollback()
+    return e;
+  }
   res.render(registe)
 }

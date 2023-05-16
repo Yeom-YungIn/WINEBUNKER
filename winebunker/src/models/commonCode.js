@@ -9,13 +9,13 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
-      publisherId: {
-        field: "code_name",
-        type: DataTypes.STRING(),
-        allowNull: false,
+      codeName: {
+       field: "code_name",
+       type: DataTypes.STRING(),
+       allowNull: false,
       },
-      codeNameKr: {
-        field: "code_name_kr",
+      codeNameKor: {
+        field: "code_name_kor",
         type: DataTypes.STRING(),
         allowNull: false,
       },
@@ -39,9 +39,10 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      underscored: true,
-      freezeTableName: true,
-      tableName: "common_code",
+        underscored: true,
+        freezeTableName: true,
+        timestamps: false,
+        tableName: "common_code",
     }
   );
   return commonCode;

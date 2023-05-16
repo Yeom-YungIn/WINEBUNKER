@@ -27,7 +27,6 @@ module.exports = function (sequelize, DataTypes) {
       taste: {
         field: "taste",
         type: DataTypes.STRING(),
-        allowNull: false,
       },
       type: {
         field: "type",
@@ -47,14 +46,22 @@ module.exports = function (sequelize, DataTypes) {
       modified: {
         field: "modified",
         type: DataTypes.DATE(),
-        allowNull: false,
       },
     },
     {
-      // underscored: true,
-      // freezeTableName: true,
-      tableName: "vin",
+        // underscored: true,
+        // freezeTableName: true,
+        timestamps: false,
+        tableName: "vin",
     }
   );
+
+  vin.associate = function (models) {
+      models.vin.belongsTo(models.resource, {
+          foreignKey: 'vinSn',
+          targetKey: 'vin',
+          as: 'resource'
+      })
+  };
   return vin
 };

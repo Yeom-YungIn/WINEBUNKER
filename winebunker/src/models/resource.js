@@ -11,8 +11,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       publisherId: {
         field: "publisher_id",
-        type: DataTypes.STRING(),
-        allowNull: false,
+        type: DataTypes.STRING()
       },
       vin: {
         field: "vin",
@@ -24,6 +23,16 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(),
         allowNull: false,
       },
+      purchaseDate: {
+        field: "purchase_date",
+        type: DataTypes.DATE(),
+        allowNull: false,
+      },
+      capacity: {
+        field: "capacity",
+        type: DataTypes.STRING(),
+        allowNull: false,
+      },
       issued: {
         field: "issued",
         type: DataTypes.DATE(),
@@ -32,13 +41,13 @@ module.exports = function (sequelize, DataTypes) {
       modified: {
         field: "modified",
         type: DataTypes.DATE(),
-        allowNull: false,
       },
     },
     {
-      // underscored: true,
-      // freezeTableName: true,
-      tableName: "resource",
+        // underscored: true,
+        // freezeTableName: true,
+        timestamps: false,
+        tableName: "resource",
     }
   );
 
