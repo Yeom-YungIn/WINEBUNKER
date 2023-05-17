@@ -1,4 +1,6 @@
 append variables
+ - console.log(resource)
+ - console.log(vin)
 
 mixin SearchList
     .container
@@ -9,18 +11,36 @@ mixin SearchList
                 th 작성자
                 th 등록일
             tbody
-              if resource !== undefined
-                each item in resource
-                    -var date = item.issued
-                    -var year = date.getFullYear()
-                    -var month = date.getMonth() + 1
-                    -var day = date.getDate()
-                    tr
-                      td= item.vinInfo.vinName
-                      td= item.publisherId
-                      td= year + '-' + month + '-' + day
-                else
-                    tr
-                      td no result
-                      td no result
-                      td no result
+                if resource
+                  if resource.length !== 0
+                    each item in resource
+                        -var date = item.issued
+                        -var year = date.getFullYear()
+                        -var month = date.getMonth() + 1
+                        -var day = date.getDate()
+                        tr
+                          td= item.vinInfo.vinName
+                          td= item.publisherId
+                    td= year + '-' + month + '-' + day
+                  else
+                      tr
+                        td no result
+                        td no result
+                        td no result
+                else if vin
+                    if vin.length !== 0
+                        - console.log('222222222')
+                        each item in vin
+                            -var date = item.resource.issued
+                            -var year = date.getFullYear()
+                            -var month = date.getMonth() + 1
+                            -var day = date.getDate()
+                            tr
+                                td= item.vinName
+                                td= item.resource.publisherId
+                                td= year + '-' + month + '-' + day
+                    else
+                        tr
+                            td no result
+                            td no result
+                            td no result
