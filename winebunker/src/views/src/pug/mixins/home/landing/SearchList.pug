@@ -1,6 +1,7 @@
 append variables
  - console.log(resource)
  - console.log(vin)
+ - var date, year, month, day
 
 mixin SearchList
     .container
@@ -8,39 +9,40 @@ mixin SearchList
             thead
               tr
                 th Wine
-                th 작성자
-                th 등록일
+                    th 한글명
+                th 구입처
+                th 가격
+                th 구매일
             tbody
                 if resource
-                  if resource.length !== 0
-                    each item in resource
-                        -var date = item.issued
-                        -var year = date.getFullYear()
-                        -var month = date.getMonth() + 1
-                        -var day = date.getDate()
+                    if resource.length !== 0
+                      each item in resource
+                        - date = item.purchaseDate
+                        - year = date.getFullYear()
+                        - month = date.getMonth() + 1
+                        - day = date.getDate()
                         tr
                           td= item.vinInfo.vinName
-                          td= item.publisherId
-                    td= year + '-' + month + '-' + day
-                  else
-                      tr
-                        td no result
-                        td no result
-                        td no result
-                else if vin
-                    if vin.length !== 0
-                        - console.log('222222222')
-                        each item in vin
-                            -var date = item.resource.issued
-                            -var year = date.getFullYear()
-                            -var month = date.getMonth() + 1
-                            -var day = date.getDate()
-                            tr
-                                td= item.vinName
-                                td= item.resource.publisherId
-                                td= year + '-' + month + '-' + day
+                          td= item.vinInfo.vinNameKor
+                          td= year + '-' + month + '-' + day
                     else
                         tr
-                            td no result
-                            td no result
-                            td no result
+                          td no result
+                          td no result
+                          td no result
+                else if vin
+                    if vin.length !== 0
+                      each item in vin
+                        - date = item.resource.issued
+                        - year = date.getFullYear()
+                        - month = date.getMonth() + 1
+                        - day = date.getDate()
+                        tr
+                          td= item.vinName
+                          td= item.resource.publisherId
+                          td= year + '-' + month + '-' + day
+                    else
+                        tr
+                          td no result
+                          td no result
+                          td no result
