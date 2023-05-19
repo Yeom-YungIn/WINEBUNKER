@@ -1,7 +1,6 @@
 append variables
- - console.log(resource)
- - console.log(vin)
  - var date, year, month, day
+ - var formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' });
 
 mixin SearchList
     .container
@@ -9,7 +8,7 @@ mixin SearchList
             thead
               tr
                 th Wine
-                    th 한글명
+                th 한글명
                 th 구입처
                 th 가격
                 th 구매일
@@ -22,27 +21,35 @@ mixin SearchList
                         - month = date.getMonth() + 1
                         - day = date.getDate()
                         tr
-                          td= item.vinInfo.vinName
-                          td= item.vinInfo.vinNameKor
-                          td= year + '-' + month + '-' + day
+                            td= item.vinInfo.vinName
+                            td= item.vinInfo.vinNameKor
+                            td= item.resourcePrice.store
+                            td= formatter.format(item.resourcePrice.price)
+                            td= year + '-' + month + '-' + day
                     else
                         tr
-                          td no result
-                          td no result
-                          td no result
+                            td no result
+                            td no result
+                            td no result
+                            td no result
+                            td no result
                 else if vin
                     if vin.length !== 0
                       each item in vin
-                        - date = item.resource.issued
+                        - date = item.resource.purchaseDate
                         - year = date.getFullYear()
                         - month = date.getMonth() + 1
                         - day = date.getDate()
                         tr
-                          td= item.vinName
-                          td= item.resource.publisherId
-                          td= year + '-' + month + '-' + day
+                            td= item.vinName
+                            td= item.vinNameKor
+                            td= item.resource.resourcePrice.store
+                            td= formatter.format(item.resource.resourcePrice.price)
+                            td= year + '-' + month + '-' + day
                     else
                         tr
-                          td no result
-                          td no result
-                          td no result
+                            td no result
+                            td no result
+                            td no result
+                            td no result
+                            td no result

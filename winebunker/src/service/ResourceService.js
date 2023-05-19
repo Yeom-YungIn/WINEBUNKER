@@ -12,14 +12,20 @@ class ResourceService {
      */
     async findAll (offset, limit) {
         const resource = await this.db.resource.findAll({
-            attributes: ['id', 'vin', 'publisherId', 'issued'],
+            // attributes: ['id', 'vin', 'publisherId', 'issued'],
             offset: offset,
             limit: limit,
+            order: [['issued', 'desc']],
             include: [
                 {
                     model: db.vin,
                     as: 'vinInfo',
-                    attributes: ['vinSn', 'vinName']
+                    // attributes: ['vinSn', 'vinName']
+                },
+                {
+                    model: db.resourcePrice,
+                    as: 'resourcePrice',
+                    // attributes: ['vinSn', 'vinName']
                 }
             ]
         });
@@ -34,14 +40,15 @@ class ResourceService {
      */
     async findWhere (vinName, offset, limit) {
         const resource = await this.db.resource.findAll({
-            attributes: ['id', 'vin', 'publisherId', 'issued'],
+            // attributes: ['id', 'vin', 'publisherId', 'issued'],
             offset: offset,
             limit: limit,
+            order: [['issued', 'desc']],
             include: [
                 {
                     model: db.vin,
                     as: 'vinInfo',
-                    attributes: ['vinSn', 'vinName'],
+                    // attributes: ['vinSn', 'vinName'],
                     where: {vinName: vinName}
                 }
             ]

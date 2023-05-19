@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   const resourceImage = sequelize.define(
-    "resource_image",
+    "resourceImage",
     {
       resourceId: {
         filed: "resource_id",

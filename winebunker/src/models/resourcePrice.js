@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   const resourcePrice = sequelize.define(
-    "resource_price",
+    "resourcePrice",
     {
       resourceId: {
         filed: "resource_id",
@@ -37,5 +37,14 @@ module.exports = function (sequelize, DataTypes) {
         tableName: "resource_price",
     }
   );
+
+    resourcePrice.associate = function (models) {
+        models.resourcePrice.belongsTo(models.resource, {
+            foreignKey: 'resourceId',
+            targetKey: 'id',
+            as: 'resource'
+        })
+    };
+
   return resourcePrice;
 };

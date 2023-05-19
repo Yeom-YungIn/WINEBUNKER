@@ -57,6 +57,12 @@ module.exports = function (sequelize, DataTypes) {
           targetKey: 'vinSn',
           as: 'vinInfo'
       })
+
+      models.resource.belongsTo(models.resourcePrice, {
+          foreignKey: 'id',
+          targetKey: 'resourceId',
+          as: 'resourcePrice'
+      })
   }
 
   return resource

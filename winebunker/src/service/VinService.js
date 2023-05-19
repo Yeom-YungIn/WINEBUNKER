@@ -13,14 +13,20 @@ class VinService {
      */
     async findVinWhere(vinName, offset, limit) {
         const findVinList = await this.db.vin.findAll({
-            attributes: ['vinSn','vinName'],
+            // attributes: ['vinSn','vinName'],
             offset: offset,
             limit: limit,
             include: [
                 {
                     model: db.resource,
                     as: 'resource',
-                    attributes: ['id', 'vin', 'publisherId', 'issued']
+                    // attributes: ['id', 'vin', 'publisherId', 'issued'],
+                    include: [
+                        {
+                            model: db.resourcePrice,
+                            as: 'resourcePrice'
+                        }
+                    ]
                 }
             ],
             where: {vinName: vinName}

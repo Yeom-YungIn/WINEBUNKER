@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   const resourceComment = sequelize.define(
-    "resource_comment",
+    "resourceComment",
     {
       id: {
         filed: "id",
