@@ -26,8 +26,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       modified: {
         field: "modified",
-        type: DataTypes.DATE(),
-        allowNull: false,
+        type: DataTypes.DATE()
       },
     },
     {
