@@ -1,4 +1,6 @@
 const db = require("../models");
+const {v4: uuidv4} = require("uuid");
+
 
 class ResourceService {
     constructor(db) {
@@ -59,16 +61,23 @@ class ResourceService {
     /**
      * Resource 등록
      */
-    async saveResource(req, res, transaction) {
-        const saveResource = await this.db.resource.save({
-            id: req.id,
-            publisherId: req.publisherId,
-            vin: req.vin,
-            purchaseDate: req.purchaseDate,
-            capacity: req.capacity,
-            issued: Date.now()
-        },
-            transaction)
+    async saveResource(req, transaction) {
+        try {
+            const saveResource = await this.db.resource.create({
+                    id: uuidv4(),
+                    publisherId: req.publisherId,
+                    vin: req.vin,
+                    purchaseDate: req.purchaseDate,
+                    description: req.description,
+                    issued: Date.now()
+                },
+                {transaction}
+            )
+            return saveResource
+        } catch (e) {
+            console.log(e)
+            return e
+        }
     }
 
     /**

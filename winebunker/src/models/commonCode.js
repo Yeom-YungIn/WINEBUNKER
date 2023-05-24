@@ -2,6 +2,11 @@ module.exports = function (sequelize, DataTypes) {
   const commonCode = sequelize.define(
     "commonCode",
     {
+      cmmnSn: {
+        field: "cmmn_sn",
+        type: DataTypes.BIGINT(),
+        allowNull: false,
+      },
       code: {
         filed: "code",
         type: DataTypes.STRING(),

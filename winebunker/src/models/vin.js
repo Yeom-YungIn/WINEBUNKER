@@ -24,10 +24,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(),
         allowNull: false,
       },
-      taste: {
-        field: "taste",
-        type: DataTypes.STRING(),
-      },
       type: {
         field: "type",
         type: DataTypes.STRING(),

@@ -19,6 +19,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(),
         allowNull: false,
       },
+      capacity: {
+        field: "capacity",
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       issued: {
         field: "issued",
         type: DataTypes.DATE(),

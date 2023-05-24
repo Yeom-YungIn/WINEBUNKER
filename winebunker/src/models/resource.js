@@ -4,14 +4,14 @@ module.exports = function (sequelize, DataTypes) {
     {
       id: {
         filed: "id",
-        type: DataTypes.UUID(),
+        type: DataTypes.UUID,
         unique: true,
         allowNull: false,
         primaryKey: true,
       },
       publisherId: {
         field: "publisher_id",
-        type: DataTypes.STRING()
+        type: DataTypes.STRING
       },
       vin: {
         field: "vin",
@@ -21,16 +21,11 @@ module.exports = function (sequelize, DataTypes) {
       description: {
         field: "description",
         type: DataTypes.STRING(),
-        allowNull: false,
+        allowNull: true,
       },
       purchaseDate: {
         field: "purchase_date",
-        type: DataTypes.DATE(),
-        allowNull: false,
-      },
-      capacity: {
-        field: "capacity",
-        type: DataTypes.STRING(),
+        type: DataTypes.DATE,
         allowNull: false,
       },
       issued: {
