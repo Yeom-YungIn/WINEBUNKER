@@ -66,7 +66,7 @@ class ResourceService {
             const saveResource = await this.db.resource.create({
                     id: uuidv4(),
                     publisherId: req.publisherId,
-                    vin: req.vin,
+                    vin: 1, //req.vin,
                     purchaseDate: req.purchaseDate,
                     description: req.description,
                     issued: Date.now()

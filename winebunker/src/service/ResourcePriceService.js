@@ -10,10 +10,10 @@ class ResourceService {
     /**
      * ResourcePrice 등록
      */
-    async saveResourcePrice(req, transaction) {
+    async saveResourcePrice(resourceId, req, transaction) {
         try {
             const saveResourcePrice = await this.db.resourcePrice.create({
-                    resourceId: req.resourceId,
+                    resourceId: resourceId,
                     price: req.price,
                     store: req.store,
                     capacity: req.capacity,
