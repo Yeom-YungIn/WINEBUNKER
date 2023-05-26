@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 router.route(app)
 
 // db sync
-db.sequelize.sync();
+// db.sequelize.sync();
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

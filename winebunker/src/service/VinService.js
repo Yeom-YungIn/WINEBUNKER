@@ -1,3 +1,5 @@
+const db = require("../models");
+
 class VinService {
     constructor(db) {
         this.db = db

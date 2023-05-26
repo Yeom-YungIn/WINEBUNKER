@@ -8,8 +8,8 @@ class ExtractService {
     async createWorker(){
         const worker = await this.worker()
         await worker.load()
-        await worker.loadLanguage('eng+fra+frm+kor+ita+ita_old+spa+spa_old+por+deu');
-        await worker.initialize('eng+fra+frm+kor+ita+ita_old+spa+spa_old+por+deu');
+        await worker.loadLanguage('eng+fra+frm+kor+ita+spa+por+deu');
+        await worker.initialize('eng+fra+frm+kor+ita+spa+por+deu');
         return worker
     }
 
