@@ -11,10 +11,23 @@ mixin Registration
                             input#purchase-date.form-control(type="date" name="purchaseDate" required)
                         .form-group
                             label(for="name-en") 와인명 (영문명)
-                            input#name-en.form-control(type="text" name="nameEn" required)
+                            .input-group
+                                input#name-en.form-control(type="text" name="nameEn" required)
+                                button.btn.btn-outline-secondary(type="button" data-bs-toggle="modal" data-bs-target="#wineNameModal" method="GET" action="/search") Search
+                        .modal.fade(id="wineNameModal" tabindex="-1" role="dialog" aria-labelledby="wineNameModalLabel" aria-hidden="true")
+                            .modal-dialog
+                                .modal-content
+                                    .modal-header
+                                        h5.modal-title#wineNameModalLabel 검색 결과
+                                        button.close(type="button" data-bs-dismiss="modal" aria-label="Close")
+                                            span(aria-hidden="true") ×
+                                    .modal-body
+                                        // 검색 결과를 보여주는 내용 추가
+                                    .modal-footer
+                                        button.btn.btn-primary(type="button" data-bs-dismiss="modal") Close
                         .form-group
                             label(for="name-ko") 와인명 (한글명)
-                            input#name-ko.form-control(type="text" name="nameKo" required)
+                            input#name-ko.form-control(type="text" name="nameKo")
                         .form-group
                             label(for="vendor") 구입처
                             input#vendor.form-control(type="text" name="store")
