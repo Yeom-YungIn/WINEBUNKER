@@ -1,4 +1,5 @@
 const db = require("../models");
+const { Op } = require('sequelize');
 
 class VinService {
     constructor(db) {
@@ -45,7 +46,7 @@ class VinService {
             // attributes: ['vinSn','vinName'],
             offset: offset || 0,
             limit: limit || 5,
-            where: {vinName: vinName}
+            where: {vinName: {[Op.like]: `%${vinName}%`}}
         });
         return findVinList;
     }

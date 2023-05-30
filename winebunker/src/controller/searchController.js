@@ -10,3 +10,11 @@ exports.search = async (req, res) => {
   const vin = await vinService.findAllVinwithResource(vinName, 0, 10);
   res.render(search, { vin })
 };
+
+exports.modal = async (req, res) => {
+  const vinName = req.query.search
+  // console.log(vinName)
+  const vin = await vinService.findAllVin(vinName, 0, 10);
+  console.log(vin)
+  res.send(vin)
+};

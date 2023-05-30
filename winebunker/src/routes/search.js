@@ -5,5 +5,7 @@ const router = express.Router();
 
 router
      .get('/', searchController.search)
+     .get('/modal', searchController.modal)
+
 
 module.exports = router;

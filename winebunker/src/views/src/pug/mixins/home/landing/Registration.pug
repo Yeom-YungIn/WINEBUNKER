@@ -13,8 +13,8 @@ mixin Registration
                             label(for="name-en") 와인명 (영문명)
                             .input-group
                                 input#name-en.form-control(type="text" name="nameEn" required)
-                                button.btn.btn-outline-secondary(type="button" data-bs-toggle="modal" data-bs-target="#wineNameModal" method="GET" action="/search") Search
-                        .modal.fade(id="wineNameModal" tabindex="-1" role="dialog" aria-labelledby="wineNameModalLabel" aria-hidden="true")
+                                button.btn.btn-outline-secondary(type="button" data-bs-toggle="modal" data-bs-target="#wineNameModal") Search
+                        .modal.fade(method="GET" action="/search" id="wineNameModal" tabindex="-1" role="dialog" aria-labelledby="wineNameModalLabel" aria-hidden="true")
                             .modal-dialog
                                 .modal-content
                                     .modal-header
@@ -22,7 +22,13 @@ mixin Registration
                                         button.close(type="button" data-bs-dismiss="modal" aria-label="Close")
                                             span(aria-hidden="true") ×
                                     .modal-body
-                                        // 검색 결과를 보여주는 내용 추가
+                                        .container
+                                            table(class = "table")
+                                                thead
+                                                    tr
+                                                        th Wine
+                                                        th 한글명
+                                                tbody
                                     .modal-footer
                                         button.btn.btn-primary(type="button" data-bs-dismiss="modal") Close
                         .form-group
@@ -33,10 +39,10 @@ mixin Registration
                             input#vendor.form-control(type="text" name="store")
                         .form-group
                             label(for="vintage") 빈티지
-                            input#vintage.form-control(type="number" name="vintage" min="0" max="9999" step="1" value="2022")
+                            input#vintage.form-control(type="number" name="vintage" min="0" max="9999" step="1" value="2000")
                         .form-group
                             label(for="capacity") 용량
-                            input#capacity.form-control(type="number" name="capacity" min="0" max="1500" step="350" required)
+                            input#capacity.form-control(type="number" name="capacity" min="0" max="1500" required)
                         .form-group
                             label(for="price") 가격
                             input#price.form-control(type="number" name="price" min="0" max="100000000" step="1000" required)
@@ -45,6 +51,41 @@ mixin Registration
                             input#etc.form-control(type="text" name="etc")
                         button.btn.btn-primary(type="submit") Submit
 
+                        script.
+                          $('#wineNameModal').on('show.bs.modal', function (event) {
+                              var nameEn = $('#name-en').val();
+                              var modal = $(this);
+                              $.ajax({
+                                  url: '/search/modal',
+                                  method: 'GET',
+                                  data: { search: nameEn },
+                                  success: function(res) {
+                                      var tableBody = modal.find('.modal-body table tbody');
+                                      tableBody.empty();
+                                      for (var i = 0; i < res.length; i++) {
+                                          var vinSn = res[i].vinSn;
+                                          var vinName = res[i].vinName;
+                                          var vinNameKor = res[i].vinNameKor;
+                                          var row = $('<tr>')
+                                              .append($('<td>').text(vinName))
+                                              .append($('<td>').text(vinNameKor));
+                                          row.on('click', function () {
+                                              var selectedRow = $(this);
+                                              var vinName = selectedRow.find('td:first-child').text();
+                                              var vinNameKor = selectedRow.find('td:nth-child(2)').text();
 
+                                              console.log('Selected Wine:', vinSn);
+                                              console.log('Selected Wine:', vinName);
 
-
+                                              $('#name-en').val(vinName)
+                                              modal.modal('hide');
+                                          });
+                                          tableBody.append(row);
+                                      }
+                                  },
+                                  error: function(error) {
+                                      console.error(error);
+                                      modal.find('.modal-body').text('검색 결과를 가져오는 중 오류가 발생했습니다.');
+                                  }
+                              })
+                          });
