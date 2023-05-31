@@ -45,10 +45,13 @@ mixin Registration
                             input#capacity.form-control(type="number" name="capacity" min="0" max="1500" required)
                         .form-group
                             label(for="price") 가격
-                            input#price.form-control(type="number" name="price" min="0" max="100000000" step="1000" required)
+                            input#price.form-control(type="number" name="price" min="0" max="100000000" required)
                         .form-group
                             label(for="etc") 기타 행사 정보
                             input#etc.form-control(type="text" name="etc")
+                        .form-group
+                            label(for="vin")
+                            input#vin.form-control(type="hidden" name="vin")
                         button.btn.btn-primary(type="submit") Submit
 
                         script.
@@ -63,21 +66,27 @@ mixin Registration
                                       var tableBody = modal.find('.modal-body table tbody');
                                       tableBody.empty();
                                       for (var i = 0; i < res.length; i++) {
-                                          var vinSn = res[i].vinSn;
+                                          var vin = res[i].vinSn;
                                           var vinName = res[i].vinName;
                                           var vinNameKor = res[i].vinNameKor;
                                           var row = $('<tr>')
                                               .append($('<td>').text(vinName))
-                                              .append($('<td>').text(vinNameKor));
+                                              .append($('<td>').text(vinNameKor))
+                                              .data('vin', vin);
                                           row.on('click', function () {
                                               var selectedRow = $(this);
+                                              var clickedVinSn = selectedRow.data('vin');
                                               var vinName = selectedRow.find('td:first-child').text();
                                               var vinNameKor = selectedRow.find('td:nth-child(2)').text();
 
-                                              console.log('Selected Wine:', vinSn);
-                                              console.log('Selected Wine:', vinName);
+                                              console.log('vinName :', vinName);
+                                              console.log('vinNameKor :', vinNameKor);
+                                              console.log('clickedVinSn :', clickedVinSn);
 
                                               $('#name-en').val(vinName)
+                                              $('#name-ko').val(vinNameKor)
+                                              $('#vin').val(clickedVinSn)
+
                                               modal.modal('hide');
                                           });
                                           tableBody.append(row);

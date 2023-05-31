@@ -62,18 +62,19 @@ class ResourceService {
      * Resource 등록
      */
     async saveResource(req, transaction) {
+        const resourceId = await uuidv4();
+        console.log(resourceId)
         try {
-            const saveResource = await this.db.resource.create({
-                    id: uuidv4(),
+            return await this.db.resource.create({
+                    id: resourceId,
                     publisherId: req.publisherId,
-                    vin: 1, //req.vin,
+                    vin: req.vin,
                     purchaseDate: req.purchaseDate,
                     description: req.description,
                     issued: Date.now()
                 },
-                {transaction}
+                { transaction }
             )
-            return saveResource
         } catch (e) {
             console.log(e)
             return e

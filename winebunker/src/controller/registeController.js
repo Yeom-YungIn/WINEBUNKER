@@ -14,9 +14,9 @@ exports.render = async (req, res) => {
 }
 
 exports.registe = async (req, res) => {
-  // console.log(req)
+  console.log(req.body)
   // console.log(res)
-  const transaction = db.sequelize.transactions
+  const transaction = db.sequelize.transaction()
   try {
     const saveResource = await resourceService.saveResource(req.body, transaction)
     console.log(saveResource)
