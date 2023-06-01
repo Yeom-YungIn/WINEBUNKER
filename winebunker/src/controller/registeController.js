@@ -1,10 +1,10 @@
 const db = require('../models');
 const ResourceService = require("../service/ResourceService");
 const ResourcePriceService = require("../service/ResourcePriceService");
+const {v4: uuidv4} = require("uuid");
 
-
-const main = '../views/src/pug/main.pug';
 const registe = '../views/src/pug/page/registration.pug';
+const registe2 = '../views/src/pug/page/registration2.pug';
 
 const resourceService = new ResourceService(db);
 const resourcePriceService = new ResourcePriceService(db);
@@ -15,15 +15,13 @@ exports.render = async (req, res) => {
 
 exports.registe = async (req, res) => {
   console.log(req.body)
-  // console.log(res)
-  const transaction = db.sequelize.transaction()
+  const transaction = await db.sequelize.transaction();
   try {
     const saveResource = await resourceService.saveResource(req.body, transaction)
-    console.log(saveResource)
     const savePrice = await resourcePriceService.saveResourcePrice(saveResource.id, req.body, transaction)
     if (saveResource && savePrice) {
       await transaction.commit()
-      res.render(registe)
+      res.render(registe2)
     } else {
       throw new Error('Fail save resource')
     }

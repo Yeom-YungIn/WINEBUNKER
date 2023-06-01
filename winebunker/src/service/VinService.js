@@ -30,7 +30,7 @@ class VinService {
                     ]
                 }
             ],
-            where: {vinName: vinName}
+            where: {vinName: {[Op.like]: `%${vinName}%`}}
         });
         return findVinList;
     }

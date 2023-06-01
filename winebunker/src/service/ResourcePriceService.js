@@ -12,16 +12,15 @@ class ResourceService {
      */
     async saveResourcePrice(resourceId, req, transaction) {
         try {
-            const saveResourcePrice = await this.db.resourcePrice.create({
+           return await this.db.resourcePrice.create({
                     resourceId: resourceId,
                     price: req.price,
                     store: req.store,
                     capacity: req.capacity,
                     issued: Date.now()
-                },
-                {transaction}
+                }
+                ,{ transaction }
             )
-            return saveResourcePrice
         } catch (e) {
             console.log(e)
             return e
