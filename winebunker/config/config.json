@@ -16,12 +16,5 @@
     "port": "5444",
     "dialect": "postgresql",
     "schema": "public"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
   }
 }

@@ -2,11 +2,15 @@ const db = require("../models");
 const {v4: uuidv4} = require("uuid");
 
 
-class ResourceService {
+class ResourcePriceService {
+    db;
     constructor(db) {
         this.db = db
     }
 
+    // set db(db) {
+    //     this.#db = db
+    // }
     /**
      * ResourcePrice 등록
      */
@@ -37,4 +41,4 @@ class ResourceService {
     }
 }
 
-module.exports = ResourceService;
+module.exports = ResourcePriceService;

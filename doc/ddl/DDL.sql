@@ -73,3 +73,12 @@ CREATE TABLE public.common_code (
     modified timestamptz NULL,
     CONSTRAINT cmmn_pkey PRIMARY KEY (code_name)
 );
+
+-- 사용자 정보
+CREATE TABLE public.tenant (
+    id varchar NOT NULL,
+    first_name varchar NOT NULL,
+    last_name varchar NOT NULL,
+    email varchar,
+    CONSTRAINT tenant_pkey PRIMARY KEY (id)
+);
