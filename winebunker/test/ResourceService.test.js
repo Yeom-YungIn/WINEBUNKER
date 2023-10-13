@@ -11,14 +11,16 @@ afterEach(() => {
 test('리소스 목록 조회', async () => {
     const offset = 0, limit = 10;
     const findList = await resourceService.findAll(offset, limit)
+    console.log(findList)
     expect(findList.length).toBe(limit)
 })
 
 test('리소스 vinName 조건 검색', async () => {
-    const vinName = 'test', offset = 0, limit = 1;
-    const findWhere = await resourceService.findWhere(vinName, offset, limit)
-    expect(findWhere.length).toBe(limit)
-    expect(findWhere[0].dataValues.vinInfo.vinName).toEqual('test')
+    const vinName = 'WENTE', offset = 0, limit = 2;
+    const findResourceByName = await resourceService.findResourceByName(vinName, offset, limit)
+    console.log(findResourceByName)
+    expect(findResourceByName.length).toBe(limit)
+    expect(findResourceByName[0].dataValues.findResourceByName.vinName).toEqual('test')
 })
 
 test('리소스 등록', async () => {
