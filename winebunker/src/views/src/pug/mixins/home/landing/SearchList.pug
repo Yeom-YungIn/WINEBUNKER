@@ -21,8 +21,8 @@ mixin SearchList
                         - month = date.getMonth() + 1
                         - day = date.getDate()
                         tr
-                            td= item.vinInfo.vinName
-                            td= item.vinInfo.vinNameKor
+                            td= item.vinName
+                            td= item.vinNameKor
                             td= item.resourcePrice.store
                             td= formatter.format(item.resourcePrice.price)
                             td= year + '-' + month + '-' + day

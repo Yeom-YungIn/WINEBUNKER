@@ -14,10 +14,10 @@ module.exports = function (sequelize, DataTypes) {
         field: "publisher_id",
         type: DataTypes.STRING
       },
-      vin: {
-        field: "vin",
-        type: DataTypes.BIGINT(),
-        allowNull: false,
+      vinName: {
+        field: "vin_name",
+        type: DataTypes.STRING(),
+        allowNull: true,
       },
       description: {
         field: "description",
@@ -38,6 +38,11 @@ module.exports = function (sequelize, DataTypes) {
         field: "modified",
         type: DataTypes.DATE(),
       },
+      vinNameKor: {
+          field: "vin_name_kor",
+          type: DataTypes.STRING(),
+          allowNull: false,
+      },
     },
     {
         // underscored: true,
@@ -48,12 +53,6 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   resource.associate = function (models) {
-      models.resource.belongsTo(models.vin, {
-          foreignKey: 'vin',
-          targetKey: 'vinSn',
-          as: 'vinInfo'
-      })
-
       models.resource.belongsTo(models.resourcePrice, {
           foreignKey: 'id',
           targetKey: 'resourceId',

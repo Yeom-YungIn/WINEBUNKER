@@ -1,5 +1,6 @@
 const db = require("../models");
 const {v4: uuidv4} = require("uuid");
+const {Op} = require("sequelize");
 
 
 class ResourceService {
@@ -14,20 +15,13 @@ class ResourceService {
      */
     async findAll (offset, limit) {
         const resource = await this.db.resource.findAll({
-            // attributes: ['id', 'vin', 'publisherId', 'issued'],
             offset: offset,
             limit: limit,
             order: [['issued', 'desc']],
             include: [
                 {
-                    model: db.vin,
-                    as: 'vinInfo',
-                    // attributes: ['vinSn', 'vinName']
-                },
-                {
                     model: db.resourcePrice,
                     as: 'resourcePrice',
-                    // attributes: ['vinSn', 'vinName']
                 }
             ]
         });
@@ -40,21 +34,22 @@ class ResourceService {
      * @param {number} offset offset
      * @param {number} limit limit
      */
-    async findWhere (vinName, offset, limit) {
+    async findResourceByName (vinName, offset, limit) {
         const resource = await this.db.resource.findAll({
             // attributes: ['id', 'vin', 'publisherId', 'issued'],
             offset: offset,
             limit: limit,
             order: [['issued', 'desc']],
+            where: {vinName: {[Op.like]: `%${vinName}%`}},
             include: [
                 {
-                    model: db.vin,
-                    as: 'vinInfo',
-                    // attributes: ['vinSn', 'vinName'],
-                    where: {vinName: vinName}
+                    model: db.resourcePrice,
+                    as: 'resourcePrice',
                 }
             ]
         });
+
+        console.log(resource)
         return resource;
     }
     
