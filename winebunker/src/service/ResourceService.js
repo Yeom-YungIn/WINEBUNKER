@@ -62,7 +62,8 @@ class ResourceService {
             return await this.db.resource.create({
                     id: resourceId,
                     publisherId: req.publisherId,
-                    vin: req.vin,
+                    vinName: req.vinName,
+                    vinNameKor: req.vinNameKor,
                     purchaseDate: req.purchaseDate,
                     description: req.description,
                     issued: Date.now()

@@ -10,30 +10,12 @@ mixin Registration
                             label(for="purchase-date") 구매 일자
                             input#purchase-date.form-control(type="date" name="purchaseDate" required)
                         .form-group
-                            label(for="name-en") 와인명 (영문명)
+                            label(for="vin-name") 와인명 (영문명)
                             .input-group
-                                input#name-en.form-control(type="text" name="nameEn" required)
-                                button.btn.btn-outline-secondary(type="button" data-bs-toggle="modal" data-bs-target="#wineNameModal") Search
-                        .modal.fade(method="GET" action="/search" id="wineNameModal" tabindex="-1" role="dialog" aria-labelledby="wineNameModalLabel" aria-hidden="true")
-                            .modal-dialog
-                                .modal-content
-                                    .modal-header
-                                        h5.modal-title#wineNameModalLabel 검색 결과
-                                        button.close(type="button" data-bs-dismiss="modal" aria-label="Close")
-                                            span(aria-hidden="true") ×
-                                    .modal-body
-                                        .container
-                                            table(class = "table")
-                                                thead
-                                                    tr
-                                                        th Wine
-                                                        th 한글명
-                                                tbody
-                                    .modal-footer
-                                        button.btn.btn-primary(type="button" data-bs-dismiss="modal") Close
+                                input#name-en.form-control(type="text" name="vinName" required)
                         .form-group
-                            label(for="name-ko") 와인명 (한글명)
-                            input#name-ko.form-control(type="text" name="nameKo")
+                            label(for="vin-name-kor") 와인명 (한글명)
+                            input#name-ko.form-control(type="text" name="vinNameKor")
                         .form-group
                             label(for="vendor") 구입처
                             input#vendor.form-control(type="text" name="store")
@@ -48,53 +30,51 @@ mixin Registration
                             input#price.form-control(type="number" name="price" min="0" max="100000000" required)
                         .form-group
                             label(for="etc") 기타 행사 정보
-                            input#etc.form-control(type="text" name="etc")
-                        .form-group
-                            label(for="vin")
-                            input#vin.form-control(type="hidden" name="vin")
+                            input#etc.form-control(type="text" name="description")
+                        .m-3
                         button.btn.btn-primary(type="submit") Submit
 
-                        script.
-                          $('#wineNameModal').on('show.bs.modal', function (event) {
-                              var nameEn = $('#name-en').val();
-                              var modal = $(this);
-                              $.ajax({
-                                  url: '/search/modal',
-                                  method: 'GET',
-                                  data: { search: nameEn },
-                                  success: function(res) {
-                                      var tableBody = modal.find('.modal-body table tbody');
-                                      tableBody.empty();
-                                      for (var i = 0; i < res.length; i++) {
-                                          var vin = res[i].vinSn;
-                                          var vinName = res[i].vinName;
-                                          var vinNameKor = res[i].vinNameKor;
-                                          var row = $('<tr>')
-                                              .append($('<td>').text(vinName))
-                                              .append($('<td>').text(vinNameKor))
-                                              .data('vin', vin);
-                                          row.on('click', function () {
-                                              var selectedRow = $(this);
-                                              var clickedVinSn = selectedRow.data('vin');
-                                              var vinName = selectedRow.find('td:first-child').text();
-                                              var vinNameKor = selectedRow.find('td:nth-child(2)').text();
-
-                                              console.log('vinName :', vinName);
-                                              console.log('vinNameKor :', vinNameKor);
-                                              console.log('clickedVinSn :', clickedVinSn);
-
-                                              $('#name-en').val(vinName)
-                                              $('#name-ko').val(vinNameKor)
-                                              $('#vin').val(clickedVinSn)
-
-                                              modal.modal('hide');
-                                          });
-                                          tableBody.append(row);
-                                      }
-                                  },
-                                  error: function(error) {
-                                      console.error(error);
-                                      modal.find('.modal-body').text('검색 결과를 가져오는 중 오류가 발생했습니다.');
-                                  }
-                              })
-                          });
+                        //script.
+                        //  $('#wineNameModal').on('show.bs.modal', function (event) {
+                        //      var nameEn = $('#name-en').val();
+                        //      var modal = $(this);
+                        //      $.ajax({
+                        //          url: '/search/modal',
+                        //          method: 'GET',
+                        //          data: { search: nameEn },
+                        //          success: function(res) {
+                        //              var tableBody = modal.find('.modal-body table tbody');
+                        //              tableBody.empty();
+                        //              for (var i = 0; i < res.length; i++) {
+                        //                  var vin = res[i].vinSn;
+                        //                  var vinName = res[i].vinName;
+                        //                  var vinNameKor = res[i].vinNameKor;
+                        //                  var row = $('<tr>')
+                        //                      .append($('<td>').text(vinName))
+                        //                      .append($('<td>').text(vinNameKor))
+                        //                      .data('vin', vin);
+                        //                  row.on('click', function () {
+                        //                      var selectedRow = $(this);
+                        //                      var clickedVinSn = selectedRow.data('vin');
+                        //                      var vinName = selectedRow.find('td:first-child').text();
+                        //                      var vinNameKor = selectedRow.find('td:nth-child(2)').text();
+                        //
+                        //                      console.log('vinName :', vinName);
+                        //                      console.log('vinNameKor :', vinNameKor);
+                        //                      console.log('clickedVinSn :', clickedVinSn);
+                        //
+                        //                      $('#name-en').val(vinName)
+                        //                      $('#name-ko').val(vinNameKor)
+                        //                      $('#vin').val(clickedVinSn)
+                        //
+                        //                      modal.modal('hide');
+                        //                  });
+                        //                  tableBody.append(row);
+                        //              }
+                        //          },
+                        //          error: function(error) {
+                        //              console.error(error);
+                        //              modal.find('.modal-body').text('검색 결과를 가져오는 중 오류가 발생했습니다.');
+                        //          }
+                        //      })
+                        //  });
