@@ -33,23 +33,3 @@ mixin SearchList
                             td no result
                             td no result
                             td no result
-                else if vin
-                    if vin.length !== 0
-                      each item in vin
-                        - date = item.resource.purchaseDate
-                        - year = date.getFullYear()
-                        - month = date.getMonth() + 1
-                        - day = date.getDate()
-                        tr
-                            td= item.vinName
-                            td= item.vinNameKor
-                            td= item.resource.resourcePrice.store
-                            td= formatter.format(item.resource.resourcePrice.price)
-                            td= year + '-' + month + '-' + day
-                    else
-                        tr
-                            td no result
-                            td no result
-                            td no result
-                            td no result
-                            td no result
